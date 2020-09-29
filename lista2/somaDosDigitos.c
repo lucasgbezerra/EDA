@@ -1,6 +1,27 @@
 #include <stdio.h>
 //Soma dos digitos
 //Caso base são números com apenas um digito
+
+int soma_dos_digitos(int num)
+{
+    if (num < 10)
+        return num;
+    else
+        return (num % 10) + soma_dos_digitos(num / 10);
+
+}
+
+int main()
+{
+    long int num;
+    int result;
+    
+    scanf("%ld", &num);
+    result = soma_dos_digitos(num);
+    printf("%d\n",result);
+    return 0;
+}
+/*
 void soma_dos_digitos(long int numb, long int *result)
 {
     if(numb<10){
@@ -19,24 +40,5 @@ int main()
     printf("%ld\n",result);
     return 0;
 }
-
-/*
-int soma_dos_digitos(int num)
-{
-    if (num < 10)
-        return num;
-    else
-        return (num % 10) + soma_dos_digitos(num / 10);
-
-}
-
-int main()
-{
-    long int num;
-    int result
-    
-    scanf("%d", num);
-    resutl = soma_dos_digitos(num)
-    printf("%ld\n",result);
-}
 */
+

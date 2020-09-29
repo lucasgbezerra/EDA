@@ -19,3 +19,24 @@ int main()
     printf("%ld\n",result);
     return 0;
 }
+
+/*
+int soma_dos_digitos(int num)
+{
+    if (num < 10)
+        return num;
+    else
+        return (num % 10) + soma_dos_digitos(num / 10);
+
+}
+
+int main()
+{
+    long int num;
+    int result
+    
+    scanf("%d", num);
+    resutl = soma_dos_digitos(num)
+    printf("%ld\n",result);
+}
+*/

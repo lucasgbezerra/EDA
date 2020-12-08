@@ -16,11 +16,10 @@ fila *cria_fila(int tam){
 }
 
 int enfileira (fila *f, int x){
-    if((f->inicio == 0) && (f->fim+1 == f->N) )
+    if((f->fim + 1) % (f->N) == f->inicio % f->N)
         return 0;
     f->v[f->fim] = x;
     f->fim=(f->fim+1) % f->N;
-    printf("f->fim: %d\n", f->fim);
     return 1;
 }
 int desenfileira (fila *f, int *y){

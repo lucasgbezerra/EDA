@@ -10,7 +10,7 @@ typedef struct celula {
 
 celula * cria_pilha(){
     celula *novo = malloc(sizeof(celula));
-    novo->prox = novo;
+    novo->prox = NULL;
     return novo;
 }
 
@@ -33,17 +33,20 @@ int desempilha (celula *topo, int *y){
 }
 
 void imprimir(celula *topo){
-    for(celula *ptr = topo->prox; ptr != NULL; ptr= ptr->prox)
-        printf("%d\n", ptr->dado);
-    if(topo->prox == NULL)
-        printf("Pilha Vazia\n");
+    celula *ptr = topo->prox;
+    while (ptr != NULL)
+    {
+        printf("%d -> ", ptr->dado);
+        ptr = ptr->prox;
+    }
+    printf("NULL\n");
 }
 int main (){
     char op;
     int dado;
     int y =0;
     celula *pi = cria_pilha();
-    printf ("O que voce deseja fazer? (E)pilhar, (D)esenpilhar, im(P)rimir, (S)air: ");
+    printf ("O que voce deseja fazer? (E)mpilhar, (D)esenpilhar, im(P)rimir, (S)air: ");
     scanf(" %c", &op);
     while(op != 's')
     {

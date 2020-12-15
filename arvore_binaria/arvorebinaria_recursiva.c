@@ -36,13 +36,30 @@ void inserir(no *raiz, int novo_elem, int elem, char lado){
     
   }
 }
-  //imprimir Em ordem
-void em_ordem (no *raiz) {
+
+//imprimir Em ordem
+void em_ordem_rec (no *raiz) {
   if (raiz != NULL) {
-    em_ordem (raiz->l);
+    em_ordem_rec (raiz->l);
     printf ("%d ", raiz->dado);
-    em_ordem (raiz->r); 
+    em_ordem_rec (raiz->r); 
   }
+}
+void pre_ordem_rec (no *raiz){
+  if (raiz != NULL) {
+    printf ("%d ", raiz->dado);
+    pre_ordem_rec (raiz->l);
+    pre_ordem_rec (raiz->r); 
+  }
+}
+void pos_ordem_rec (no *raiz){
+  if (raiz != NULL) {
+    pos_ordem_rec (raiz->l);
+    pos_ordem_rec (raiz->r);
+    printf ("%d ", raiz->dado);
+
+  }
+ 
 }
 
 int main(){
@@ -54,7 +71,13 @@ int main(){
   while(scanf("%d %c %d", &novo, &lado, &elem) != EOF){
     inserir(raiz, novo, elem, lado);
   }
-  em_ordem(raiz);
-  printf("/n");
+  printf("EM ORDEM:\n3 5 4 8 2 1 9 7 6\n");
+  em_ordem_rec(raiz);
+  printf("\nPRE ORDEM:\n2 5 3 8 4 7 1 9 6\n");
+  pre_ordem_rec(raiz);
+  printf("\nPOS ORDEM:\n3 4 8 5 9 1 6 7 2\n");
+  pos_ordem_rec(raiz);
+
+  printf("\n");
   return 0;
 }

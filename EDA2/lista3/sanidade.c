@@ -70,7 +70,7 @@ int main(){
 
 	ptr1 = v[0];
 	ptr2 = v[1];
-    no *cam = malloc(sizeof(no) * i);
+    	no *cam = malloc(sizeof(no) * i);
 	quickSortM3(v, 0, i-1);
 
 
@@ -94,6 +94,5 @@ int main(){
 	else
 		printf("insana\n");
 	
-    free(cam);
     return 0;
 }

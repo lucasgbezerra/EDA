@@ -64,13 +64,13 @@ int main(){
 	no *v;
 	int i = 0, t = 10000;
 	no ptr1, ptr2, *ptr, *cam;
-	int idx, k = 0;
+	int idx, k = 0, ok = 0;
 	
 	v = malloc(sizeof(no) * t);
 	while(scanf("%lx %lx %lx", &v[i].ele, &v[i].ant, &v[i].prx) != EOF){
 		i++;
 		if(i == t-10){
-			//v = realloc(v, 2*t * sizeof(no));
+			v = realloc(v, 2*t * sizeof(no));
 			t = t*2;
 		}		
 	}
@@ -81,21 +81,30 @@ int main(){
 	quickSortM3(v, 0, i-1);
 	ptr = &ptr1;
 	idx = buscaBinaria(v, 0, i-1, ptr->prx);
+	
 	for(int j = 0; j < i; j++){
 		if(idx != -1){
 			ptr = &v[idx];
 			cam[k++] = v[idx];
-			idx = buscaBinaria(v, 0, i-1, ptr->prx);
+			//printf("cam.ele: %lx| cam.prx %lx\n", cam[j].ele, cam[j].prx);
+			if(ptr2.ele == ptr->ele)
+				ok ++;
 		
-		if(ptr->ele == v[idx].ele)
-			printf("De ptr1 -> ptr2 OK\n");
+			idx = buscaBinaria(v, 0, i-1, ptr->prx);
 		}
 	}
-
-	for(int j = 0; j < k; j++){
-		printf("cam: %lx -> ", cam[j].ele);
+	//printf("ok: %d\n", ok);
+	for(int j = k -1; j >= 0 && ok == 1; j--){
+		//printf("cam.ele: %lx| cam.ant %lx\n", cam[j].ele, cam[j].ant);
+		if(cam[j].ant == ptr1.ele)
+			ok++;
 	}
-	printf("\n");
-
+	
+	//printf("ok: %d\n", ok);
+	if(ok == 2)
+		printf("sana\n");
+	else
+		printf("insana\n");
+	
     return 0;
 }

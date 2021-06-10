@@ -58,7 +58,7 @@ void mergeSort(no *v, int l, int r){
 
 int main(){
 	no v[250010], ptr1, ptr2, *ptr, *way;
-	int i = 0, j1, j2, k = 0, idx;
+	int i = 0, j1, j2, k = 0, idx, cont = 0;
 
 	while(scanf("%lx %lx %lx", &v[i].dado, &v[i].ant, &v[i].prx) != EOF)
 		i++;
@@ -78,14 +78,20 @@ int main(){
 		printf("[%d]:%lx %lx %lx\n", c,v[c].dado, v[c].ant, v[c].prx);
 	printf("\n");
 	*/
-	idx = buscaBinaria(v, 0, j1 - 1, v[0].prx);
+	idx = buscaBinaria(v, 0, j1 - 1, ptr1.ant);
 	for(int c = 0; c < j1; c++){
+		
 		if(idx != -1){
+			if(c == 0)
+				v[idx].prx = ptr2.prx;
 			way[k++] = v[idx];
-			idx = buscaBinaria(v, 0, j1 - 1, v[idx].prx);
+			idx = buscaBinaria(v, 0, j1 - 1, v[idx].ant);
 		}
 		
+
+		
 	}
+	
 	idx = j2+1;
 	for(int c = j2+1; c < i; c++){
 		if(idx != -1){
@@ -94,13 +100,18 @@ int main(){
 		}
 		
 	}
+	mergeSort(way, 0, k);
+	
 	printf("k: %d\n", k);
 	for(int c = 0; c < k; c++)
 		printf("%lx %lx %lx\n",way[c].dado, way[c].ant, way[c].prx);
-	printf("\n");
-	/*
-	for(int c = j1; c < j2 + 1; c++)
-		printf("%lx\n", v[c].dado);
-	*/
+	printf("\n\n");
+
+	
+	for(int c = j1; c < i; c++)
+		if(v[c].dado != way[cont].dado)
+			printf("%lx\n", v[c].dado);
+		else
+			cont++;
 	return 0;
 }
